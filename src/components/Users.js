@@ -1,12 +1,14 @@
 import React from 'react'
 import {useState,useEffect} from 'react'
-import axios from '../api/axios'
+// import axios from '../api/axios'   after useAxiosPrivate hook we are not going to use this import in this component anymore 
+import useAxiosPrivate from "../hooks/useAxiosPrivate"
 
 const Users = () => {
 
 
 
     const [users,setUsers] = useState()
+    const axiosPrivate = useAxiosPrivate()
 
 
     useEffect(() => {
@@ -15,7 +17,7 @@ const Users = () => {
 
             const getUsers = async () => {
                     try{
-                                const response = await axios.get('/users',{
+                                const response = await axiosPrivate.get('/users',{
                                     signal: controller.signal
                                 });
                                 console.log(response.data);
